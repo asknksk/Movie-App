@@ -2,6 +2,7 @@ import * as React from "react";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import Stack from "@mui/material/Stack";
+import { Box } from "@mui/material";
 
 export default function Search() {
   const defaultProps = {
@@ -16,16 +17,18 @@ export default function Search() {
   const [value, setValue] = React.useState(null);
 
   return (
-    <Stack spacing={1} sx={{ width: 300 }}>
-      <Autocomplete
-        {...defaultProps}
-        id="clear-on-escape"
-        clearOnEscape
-        renderInput={(params) => (
-          <TextField {...params} label="clearOnEscape" variant="standard" />
-        )}
-      />{" "}
-    </Stack>
+    <Box sx={{ background: "grey" }}>
+      <Stack spacing={1} sx={{ width: 300 }}>
+        <Autocomplete
+          {...defaultProps}
+          id="clear-on-escape"
+          clearOnEscape
+          renderInput={(params) => (
+            <TextField {...params} label="clearOnEscape" variant="standard" />
+          )}
+        />{" "}
+      </Stack>
+    </Box>
   );
 }
 
