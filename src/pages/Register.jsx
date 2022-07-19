@@ -1,14 +1,17 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { register } from "../auth/firebase";
+import { login as loginHandle } from "../store/auth";
 
 const Register = () => {
+  const dispatch = useDispatch()
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const user = await register(email, password);
-    console.log(user);
+dispatch(loginHandle(user))
   };
   return (
     <div>
@@ -22,7 +25,7 @@ const Register = () => {
         <br />
         <input
           type="password"
-          placeholder="password"
+          placeholder="******"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />

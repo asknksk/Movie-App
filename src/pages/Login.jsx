@@ -12,6 +12,9 @@ import Grid from "@mui/material/Grid";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { login } from "../auth/firebase";
+import { useState } from "react";
+import { Link as LinkRouter } from "react-router-dom";
 
 function Copyright(props) {
   return (
@@ -30,17 +33,14 @@ function Copyright(props) {
     </Typography>
   );
 }
-
 const theme = createTheme();
 
 export default function SignInSide() {
-  const handleSubmit = (event) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+    const user = await login(email, password);
   };
 
   return (
@@ -91,9 +91,11 @@ export default function SignInSide() {
                 fullWidth
                 id="email"
                 label="Email Address"
-                name="email"
+                value={email}
                 autoComplete="email"
                 autoFocus
+                name="email"
+                onChange={(e) => setEmail(e.target.value)}
               />
               <TextField
                 margin="normal"
@@ -104,6 +106,8 @@ export default function SignInSide() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
               />
               <FormControlLabel
                 control={<Checkbox value="remember" color="primary" />}
@@ -119,14 +123,14 @@ export default function SignInSide() {
               </Button>
               <Grid container>
                 <Grid item xs>
-                  <Link href="#" variant="body2">
+                  <LinkRouter to="/" variant="body2">
                     Forgot password?
-                  </Link>
+                  </LinkRouter>
                 </Grid>
                 <Grid item>
-                  <Link href="#" variant="body2">
-                    {"Don't have an account? Sign Up"}
-                  </Link>
+                  <LinkRouter to="/register">
+                    Don't have an account? Sign Up
+                  </LinkRouter>
                 </Grid>
               </Grid>
               <Copyright sx={{ mt: 5 }} />

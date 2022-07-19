@@ -15,11 +15,11 @@ const AppRouter = () => {
       <SearchBar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="login" element={<Login />} />
-        <Route path="register" element={<Register />} />
-        <Route path="moviedetail" element={<PrivateRouter />}>
+        <Route path="/login" element={<Login />} />
+        <Route path="/moviedetail" element={<PrivateRouter />}>
           <Route path="" element={<MovieDetail />} />
         </Route>
+        <Route path="/register" element={<Register />} />
       </Routes>
     </BrowserRouter>
   );
