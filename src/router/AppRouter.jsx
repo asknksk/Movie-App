@@ -7,21 +7,31 @@ import Login from "../pages/Login";
 import MovieDetail from "../pages/MovieDetail";
 import Register from "../pages/Register";
 import PrivateRouter from "./PrivateRouter";
+import { Provider } from "react-redux";
+import store from "../store/index";
+import { Toaster } from "react-hot-toast";
+import UpdateProfile from "../components/UpdateProfile";
 
 const AppRouter = () => {
   return (
-    <BrowserRouter>
-      <NavBar />
-      <SearchBar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/moviedetail" element={<PrivateRouter />}>
-          <Route path="" element={<MovieDetail />} />
-        </Route>
-        <Route path="/register" element={<Register />} />
-      </Routes>
-    </BrowserRouter>
+    <Provider store={store}>
+      <Toaster position="top-right" />
+
+      <BrowserRouter>
+        <NavBar />
+        <SearchBar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/update" element={<UpdateProfile />} />
+
+          <Route path="/moviedetail" element={<PrivateRouter />}>
+            <Route path="" element={<MovieDetail />} />
+          </Route>
+          <Route path="/register" element={<Register />} />
+        </Routes>
+      </BrowserRouter>
+    </Provider>
   );
 };
 

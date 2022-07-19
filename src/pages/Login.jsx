@@ -15,6 +15,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { login } from "../auth/firebase";
 import { useState } from "react";
 import { Link as LinkRouter } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Copyright(props) {
   return (
@@ -36,13 +37,19 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignInSide() {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     const user = await login(email, password);
+    if (user) {
+      navigate("/", {
+        replace: true,
+      });
+    }
   };
-
   return (
     <ThemeProvider theme={theme}>
       <Grid container component="main" sx={{ height: "100vh" }}>

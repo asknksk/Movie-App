@@ -4,8 +4,12 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
+  onAuthStateChanged,
+  updateProfile,
 } from "firebase/auth";
 import toast from "react-hot-toast";
+import store from "../store";
+import { login as loginHandle, logout as logoutHandle } from "../store/auth";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -35,7 +39,7 @@ export const register = async (email, password) => {
 export const login = async (email, password) => {
   try {
     const { user } = await signInWithEmailAndPassword(auth, email, password);
-    toast.success("Login Success")
+    toast.success("Login Success");
     return user;
   } catch (error) {
     toast.error(error.message);
@@ -47,8 +51,25 @@ export const logout = async () => {
     const { user } = await signOut(auth);
     return true;
   } catch (error) {
+    toast.error("Logouted");
+  }
+};
+
+export const update = async (data) => {
+  try {
+    await updateProfile(auth.currentUser, data);
+    return true;
+  } catch (error) {
     toast.error(error.message);
   }
 };
+
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    store.dispatch(loginHandle(user));
+  } else {
+    store.dispatch(logoutHandle());
+  }
+});
 
 export default app;

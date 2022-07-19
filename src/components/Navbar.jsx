@@ -5,22 +5,25 @@ import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
-import MenuIcon from "@mui/icons-material/Menu";
+// import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
+// import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import AdbIcon from "@mui/icons-material/Adb";
-import { Link } from "react-router-dom";
+// import AdbIcon from "@mui/icons-material/Adb";
+import { Link, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { logout } from "../auth/firebase";
+import { logout as logoutHandle } from "../store/auth";
 
 const NavBar = () => {
-  const settings = ["Profile", "Account", "Dashboard", "Logout"];
-  const pages = ["Products", "Pricing", "Blog"];
+  const settings = ["Account", "Dashboard"];
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-  //! user will change
-  const [user, setUser] = React.useState(false);
+  const { user } = useSelector((state) => state.auth);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -35,6 +38,14 @@ const NavBar = () => {
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
+  };
+
+  const handleLogout = async () => {
+    await logout();
+    dispatch(logoutHandle());
+    navigate("/", {
+      replace: true,
+    });
   };
 
   return (
@@ -109,11 +120,24 @@ const NavBar = () => {
                 open={Boolean(anchorElUser)}
                 onClose={handleCloseUserMenu}
               >
-                {settings.map((setting) => (
+                <MenuItem onClick={handleCloseUserMenu}>
+                  <Typography
+                    textAlign="center"
+                    onClick={() => navigate("/update")}
+                  >
+                    Profile
+                  </Typography>
+                </MenuItem>
+                {/* {settings.map((setting) => (
                   <MenuItem key={setting} onClick={handleCloseUserMenu}>
                     <Typography textAlign="center">{setting}</Typography>
                   </MenuItem>
-                ))}
+                ))} */}
+                <MenuItem onClick={handleCloseUserMenu}>
+                  <Typography textAlign="center" onClick={handleLogout}>
+                    Logout
+                  </Typography>
+                </MenuItem>
               </Menu>
             </Box>
           ) : (
