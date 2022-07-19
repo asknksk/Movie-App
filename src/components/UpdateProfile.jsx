@@ -1,12 +1,17 @@
 import { useState } from "react";
-import { update } from "../auth/firebase";
+import { update, auth } from "../auth/firebase";
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "../store/auth";
 
 export default function UpdateProfile() {
-  const [displayName, setDisplayName] = useState("");
+  const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.auth);
+  const [displayName, setDisplayName] = useState(user.displayName || "");
 
   const handleSubmit = async (e) => {
-    e.preventDefaul();
+    e.preventDefault();
     await update({ displayName });
+    dispatch(login(auth.currentUser));
   };
   return (
     <form onSubmit={handleSubmit}>

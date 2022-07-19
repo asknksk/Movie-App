@@ -21,7 +21,7 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const auth = getAuth();
+export const auth = getAuth();
 
 export const register = async (email, password) => {
   try {
@@ -58,6 +58,7 @@ export const logout = async () => {
 export const update = async (data) => {
   try {
     await updateProfile(auth.currentUser, data);
+    toast.success("Profile Updated");
     return true;
   } catch (error) {
     toast.error(error.message);
