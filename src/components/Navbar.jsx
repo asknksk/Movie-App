@@ -12,6 +12,7 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
+import { Link } from "react-router-dom";
 
 const NavBar = () => {
   const settings = ["Profile", "Account", "Dashboard", "Logout"];
@@ -77,7 +78,7 @@ const NavBar = () => {
               textDecoration: "none",
             }}
           >
-            Home
+            <Link to={"/"}>Home</Link>
           </Typography>
           <Typography
             variant="h6"
@@ -118,10 +119,14 @@ const NavBar = () => {
           ) : (
             <>
               <MenuItem onClick={handleCloseNavMenu}>
-                <Typography textAlign="center">Register</Typography>
+                <Typography textAlign="center">
+                  <Link to={"/register"}>Register</Link>
+                </Typography>
               </MenuItem>
               <MenuItem onClick={handleCloseNavMenu}>
-                <Typography textAlign="center">Login</Typography>
+                <Typography textAlign="center" to="/login">
+                  <Link to={"/login"}>Login</Link>
+                </Typography>
               </MenuItem>
             </>
           )}

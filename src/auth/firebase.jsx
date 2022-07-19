@@ -1,4 +1,5 @@
 import { initializeApp } from "firebase/app";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -10,5 +11,11 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
+const auth = getAuth();
+
+export const register = async (email, password) => {
+  const { user } = await createUserWithEmailAndPassword(auth, email, password);
+  return user;
+};
 
 export default app;
