@@ -30,6 +30,7 @@ export const register = async (email, password) => {
       email,
       password
     );
+    toast.success("SignUp Completed Success");
     return user;
   } catch (error) {
     toast.error(error);
