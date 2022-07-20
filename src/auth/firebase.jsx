@@ -23,13 +23,14 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth();
 
-export const register = async (email, password) => {
+export const register = async (email, password, displayName) => {
   try {
     const { user } = await createUserWithEmailAndPassword(
       auth,
       email,
       password
     );
+    await updateProfile(auth.currentUser, { displayName: displayName });
     toast.success("SignUp Completed Success");
     return user;
   } catch (error) {
@@ -69,6 +70,7 @@ export const update = async (data) => {
 onAuthStateChanged(auth, (user) => {
   if (user) {
     store.dispatch(loginHandle(user));
+    console.log(user);
   } else {
     store.dispatch(logoutHandle());
   }
