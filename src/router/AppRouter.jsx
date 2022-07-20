@@ -21,8 +21,7 @@ const AppRouter = () => {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/update" element={<UpdateProfile />} />
-
-          <Route path="/detail:id" element={<PrivateRouter />}>
+          <Route path="/detail/:id" element={<PrivateRouter />}>
             <Route path="" element={<MovieDetail />} />
           </Route>
           <Route path="/register" element={<Register />} />
