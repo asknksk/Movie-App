@@ -18,16 +18,12 @@ import { logout } from "../auth/firebase";
 import { logout as logoutHandle } from "../store/auth";
 
 const NavBar = () => {
-  const settings = ["Account", "Dashboard"];
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const { user } = useSelector((state) => state.auth);
 
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
-  };
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };

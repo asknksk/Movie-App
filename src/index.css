@@ -30,3 +30,18 @@
   transition: all 1s !important;
   padding: 1rem;
 }
+.search {
+  width: 100%;
+  justify-content: center;
+  background-color: #bdbdbd;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+}
+.search-input {
+  height: 30px;
+  width: 300px;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+}

@@ -70,7 +70,6 @@ export const update = async (data) => {
 onAuthStateChanged(auth, (user) => {
   if (user) {
     store.dispatch(loginHandle(user));
-    console.log(user);
   } else {
     store.dispatch(logoutHandle());
   }
