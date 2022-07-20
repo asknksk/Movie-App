@@ -1,0 +1,32 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.card {
+  max-width: 300px;
+  margin: auto;
+  position: relative;
+  cursor: pointer;
+  transition: all 1.5s !important;
+}
+.card:hover {
+  transform: scale(1.2);
+  z-index: 1;
+}
+.card:hover .overview {
+  height: max-content;
+  transform: translateY(0%);
+}
+
+.overview {
+  font-size: 0.81rem !important;
+  overflow: hidden;
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: translateX(100%);
+  background-color: rgba(255, 255, 255, 0.81);
+  transition: all 1s !important;
+  padding: 1rem;
+}
