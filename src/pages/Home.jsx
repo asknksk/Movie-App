@@ -52,7 +52,7 @@ const Home = () => {
           placeholder="Search a movie..."
           onChange={(e) => setSearchItem(e.target.value)}
         />
-        <button type="submit">Search</button>
+        <button type="submit" className="search-button">Search</button>
       </form>
       <Container sx={{ marginTop: "4rem" }}>
         <Grid

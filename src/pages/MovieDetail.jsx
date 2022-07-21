@@ -16,6 +16,7 @@ function Details() {
   const navigate = useNavigate();
   const [movieDetails, setMovieDetails] = useState({});
   const [movies, setMovies] = useState([]);
+
   const { id } = useParams();
   const {
     title,
@@ -24,32 +25,34 @@ function Details() {
     vote_average,
     release_date,
     vote_count,
-    videoKey,
   } = movieDetails;
-
+  const { key } = movies;
   const API_KEY = process.env.REACT_APP_TMDB_KEY;
   const movieDetailBaseUrl = `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}`;
-  const baseImageUrl = "https://image.tmdb.org/t/p/w1280";
+  // const baseImageUrl = "https://image.tmdb.org/t/p/w1280";
   const defaultImage =
     "https://images.unsplash.com/photo-1581905764498-f1b60bae941a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80";
-  const discoverUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}`;
-
+  // const discoverUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}`;
+  const videoUrl = `https://api.themoviedb.org/3/movie/${id}/videos?api_key=${API_KEY}`;
   useEffect(() => {
     axios
       .get(movieDetailBaseUrl)
       .then((res) => setMovieDetails(res.data))
       .catch((err) => console.log(err));
+    getMovies();
   }, [movieDetailBaseUrl]);
 
   const getMovies = async () => {
     try {
-      const { data } = await axios.get(discoverUrl);
-      setMovies(data.results);
+      const { data } = await axios.get(videoUrl);
+      setMovies(data.results[0]);
     } catch (err) {
       toast.error(err);
     }
   };
-  console.log(title);
+  useEffect(() => {
+    getMovies();
+  }, []);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   return (
@@ -57,17 +60,17 @@ function Details() {
       <div class="video-background">
         <div class="video-foreground">
           <iframe
-            src={`https://www.youtube.com/embed/${videoKey}?autoplay=1&mute=1&loop=1&playlist=${videoKey}`}
+            src={`https://www.youtube.com/embed/${key}?autoplay=1&mute=1&loop=1&playlist=${key}`}
             title={title}
             frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen
+            allowfullscreen="true"
           ></iframe>
         </div>
       </div>
 
       <Container maxWidth="md" sx={{ marginTop: "4rem" }}>
-        <Typography
+        {/* <Typography
           variant="h3"
           noWrap
           component="div"
@@ -80,7 +83,7 @@ function Details() {
           }}
         >
           MOVIE APP
-        </Typography>
+        </Typography> */}
         <Card
           className="detail-card"
           sx={{
@@ -107,7 +110,7 @@ function Details() {
                 component="div"
                 sx={{ marginTop: "1rem" }}
               >
-                <span style={{ color: "orangered" }}>Release Date :</span>{" "}
+                <span style={{ color: "#1976d2" }}>Release Date :</span>{" "}
                 {release_date}
               </Typography>
               <Typography
@@ -116,12 +119,20 @@ function Details() {
                 component="div"
                 sx={{ marginTop: "1rem", marginBottom: "1rem" }}
               >
-                <span style={{ color: "orangered" }}>Rate :</span>{" "}
-                {vote_average}
+                <span style={{ color: "#1976d2" }}>Rate :</span> {vote_average}
+              </Typography>
+              <Typography
+                variant="h5"
+                color="text.secondary"
+                component="div"
+                sx={{ marginTop: "1rem", marginBottom: "1rem" }}
+              >
+                <span style={{ color: "#1976d2" }}>Vote Count :</span>{" "}
+                {vote_count}
               </Typography>
               <Button
                 variant="contained"
-                color="secondary"
+                color="success"
                 onClick={() => navigate(-1)}
               >
                 Back
@@ -139,7 +150,7 @@ function Details() {
               order: isMobile ? "-1" : "1",
             }}
             image={poster_path ? IMG_API + poster_path : defaultImage}
-            alt="Live from space album cover"
+            alt="film poster"
           />
         </Card>
       </Container>

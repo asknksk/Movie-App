@@ -33,8 +33,9 @@ export default function MovieCard({
         className="card"
         sx={{ maxWidth: 300, margin: "auto" }}
         onClick={() => {
-          navigate("/detail/" + id);
-          // !user && alert("Please login to see detail");
+          user
+            ? navigate("/detail/" + id)
+            : alert("Please login to see detail");
         }}
       >
         <Typography className="overview" variant="body1" color="text.primary">

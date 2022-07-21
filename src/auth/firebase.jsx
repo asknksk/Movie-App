@@ -6,6 +6,8 @@ import {
   signOut,
   onAuthStateChanged,
   updateProfile,
+  signInWithPopup,
+  GoogleAuthProvider,
 } from "firebase/auth";
 import toast from "react-hot-toast";
 import store from "../store";
@@ -74,5 +76,18 @@ onAuthStateChanged(auth, (user) => {
     store.dispatch(logoutHandle());
   }
 });
+
+export const signUpGoogle = (navigate) => {
+  const provider = new GoogleAuthProvider();
+  signInWithPopup(auth, provider)
+    .then((result) => {
+      console.log(result);
+      navigate('/');
+      toast.success('Logged out successfully!');
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
 
 export default app;

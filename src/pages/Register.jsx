@@ -48,6 +48,9 @@ export default function Register() {
     // await register(email, password, displayName);
     navigate("/login");
   };
+  const handleLogin = () => {
+    navigate("/login");
+  };
 
   return (
     <ThemeProvider theme={theme}>
@@ -133,9 +136,14 @@ export default function Register() {
             >
               Sign Up
             </Button>
+
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link
+                  variant="body2"
+                  sx={{ cursor: "pointer" }}
+                  onClick={handleLogin}
+                >
                   Already have an account? Sign in
                 </Link>
               </Grid>

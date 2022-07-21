@@ -63,7 +63,9 @@ const NavBar = () => {
               textDecoration: "none",
             }}
           >
-            Home
+            <Link to={"/"} className="home-button">
+              Home
+            </Link>
           </Typography>
 
           <Typography
@@ -82,7 +84,9 @@ const NavBar = () => {
               textDecoration: "none",
             }}
           >
-            <Link to={"/"}>Home</Link>
+            <Link to={"/"} className="home-button">
+              Home
+            </Link>
           </Typography>
           <Typography
             variant="h6"
@@ -122,11 +126,7 @@ const NavBar = () => {
                     Profile
                   </Typography>
                 </MenuItem>
-                {/* {settings.map((setting) => (
-                  <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                    <Typography textAlign="center">{setting}</Typography>
-                  </MenuItem>
-                ))} */}
+
                 <MenuItem onClick={handleCloseUserMenu}>
                   <Typography textAlign="center" onClick={handleLogout}>
                     Logout
@@ -138,12 +138,16 @@ const NavBar = () => {
             <>
               <MenuItem onClick={handleCloseNavMenu}>
                 <Typography textAlign="center">
-                  <Link to={"/register"}>Register</Link>
+                  <Link to={"/register"} className={"navbar-login"}>
+                    Register
+                  </Link>
                 </Typography>
               </MenuItem>
               <MenuItem onClick={handleCloseNavMenu}>
                 <Typography textAlign="center" to="/login">
-                  <Link to={"/login"}>Login</Link>
+                  <Link to={"/login"} className={"navbar-login"}>
+                    Login
+                  </Link>
                 </Typography>
               </MenuItem>
             </>

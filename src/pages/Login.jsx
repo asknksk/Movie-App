@@ -12,7 +12,7 @@ import Grid from "@mui/material/Grid";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { login } from "../auth/firebase";
+import { login, signUpGoogle } from "../auth/firebase";
 import { useState } from "react";
 import { Link as LinkRouter } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -49,6 +49,10 @@ export default function SignInSide() {
         replace: true,
       });
     }
+  };
+
+  const handleLoginGoogle = async () => {
+    signUpGoogle(navigate);
   };
   return (
     <ThemeProvider theme={theme}>
@@ -127,6 +131,15 @@ export default function SignInSide() {
                 sx={{ mt: 3, mb: 2 }}
               >
                 Sign In
+              </Button>
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                sx={{ mt: 3, mb: 2 }}
+                onClick={handleLoginGoogle}
+              >
+                Continue with Google
               </Button>
               <Grid container>
                 <Grid item xs>
