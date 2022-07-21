@@ -18,7 +18,6 @@ export default function MovieCard({
   vote_average,
   id,
 }) {
-  // const {getMovieDetails} = useContext(AppContext);
   const navigate = useNavigate();
   const [loaded, setLoaded] = React.useState(false);
   const { user } = useSelector((state) => state.auth);
@@ -57,7 +56,6 @@ export default function MovieCard({
         />
 
         <CardActions>
-          {/* onClick={()=>getMovieDetails(id,navigate,title)} */}
           <Button size="small">DETAILS</Button>
           <Typography variant="h4" color="primary" sx={{ marginLeft: "auto" }}>
             {vote_average}

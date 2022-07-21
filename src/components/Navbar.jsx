@@ -98,8 +98,10 @@ const NavBar = () => {
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Typography>{user.displayName}</Typography>
-                  <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                  <Typography sx={{ color: "white", mr: 2 }}>
+                    {user.displayName}
+                  </Typography>
+                  <Avatar alt="Remy Sharp"  />
                 </IconButton>
               </Tooltip>
               <Menu

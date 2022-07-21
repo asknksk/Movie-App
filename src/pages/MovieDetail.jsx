@@ -29,10 +29,8 @@ function Details() {
   const { key } = movies;
   const API_KEY = process.env.REACT_APP_TMDB_KEY;
   const movieDetailBaseUrl = `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}`;
-  // const baseImageUrl = "https://image.tmdb.org/t/p/w1280";
   const defaultImage =
     "https://images.unsplash.com/photo-1581905764498-f1b60bae941a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80";
-  // const discoverUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}`;
   const videoUrl = `https://api.themoviedb.org/3/movie/${id}/videos?api_key=${API_KEY}`;
   useEffect(() => {
     axios
@@ -70,20 +68,6 @@ function Details() {
       </div>
 
       <Container maxWidth="md" sx={{ marginTop: "4rem" }}>
-        {/* <Typography
-          variant="h3"
-          noWrap
-          component="div"
-          color="primary"
-          textAlign="center"
-          sx={{ display: { xs: "block", sm: "none", cursor: "pointer" } }}
-          onClick={() => {
-            navigate("/");
-            getMovies();
-          }}
-        >
-          MOVIE APP
-        </Typography> */}
         <Card
           className="detail-card"
           sx={{

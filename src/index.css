@@ -34,7 +34,6 @@ body {
 }
 .search {
   width: 100%;
-  justify-content: center;
   background-color: #bdbdbd;
   padding: 1rem;
   display: flex;
@@ -87,4 +86,27 @@ body {
 .video-background iframe {
   width: auto;
   height: 100%;
+}
+.update {
+  width: 100%;
+  text-align: center;
+  padding: 1rem;
+}
+.update label {
+  color: #1976d2;
+  font-size: 2rem;
+}
+.input-profile {
+  margin: 1rem;
+  border-radius: 4px;
+  padding: 1rem;
+}
+.change-button {
+  background-color: #1976d2;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+  transition: 1s;
+  padding: 1rem;
 }

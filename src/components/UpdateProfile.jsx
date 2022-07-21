@@ -14,21 +14,36 @@ export default function UpdateProfile() {
     dispatch(login(auth.currentUser));
   };
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label>DisplayName</label>
-        <div>
-          <input
-            type="text"
-            placeholder="DisplayName"
-            value={displayName}
-            onChange={(e) => setDisplayName(e.target.value)}
-          />
-        </div>
-      </div>
-      <div>
-        <button type="submit">Change Name</button>
-      </div>
+    // <form onSubmit={handleSubmit}>
+    //   <div>
+    //     <label>DisplayName</label>
+    //     <div>
+    //       <input
+    //         type="text"
+    //         placeholder="DisplayName"
+    //         value={displayName}
+    //         onChange={(e) => setDisplayName(e.target.value)}
+    //       />
+    //     </div>
+    //   </div>
+    //   <div>
+    //     <button type="submit">Change Name</button>
+    //   </div>
+    <form className="update" onSubmit={handleSubmit}>
+      <label>Display Name</label>
+      <br />
+      <input
+        type="text"
+        placeholder="Please enter your name"
+        value={displayName}
+        onChange={(e) => setDisplayName(e.target.value)}
+        className="input-profile"
+      />
+      <br />
+      <button type="submit" className="change-button">
+        Change
+      </button>
     </form>
+    // </form>
   );
 }
