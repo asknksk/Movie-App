@@ -20,7 +20,7 @@ const NavBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const { user } = useSelector((state) => state.auth);
-
+  console.log(anchorElNav);
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
@@ -101,7 +101,7 @@ const NavBar = () => {
                   <Typography sx={{ color: "white", mr: 2 }}>
                     {user.displayName}
                   </Typography>
-                  <Avatar alt="Remy Sharp"  />
+                  <Avatar alt="Remy Sharp" />
                 </IconButton>
               </Tooltip>
               <Menu
