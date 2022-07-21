@@ -23,8 +23,8 @@ function Copyright(props) {
       {...props}
     >
       {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
+      <Link color="inherit" href="https://github.com/asknksk/Movie-App">
+        Github Project Link
       </Link>{" "}
       {new Date().getFullYear()}
       {"."}
@@ -45,7 +45,7 @@ export default function Register() {
     e.preventDefault();
     const displayName = `${firstName} ${lastName}`;
     const user = await register(email, password, displayName);
-console.log(user)
+    console.log(user);
     navigate("/login");
   };
   const handleLogin = () => {
