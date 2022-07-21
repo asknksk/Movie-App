@@ -38,6 +38,7 @@ function Details() {
       .then((res) => setMovieDetails(res.data))
       .catch((err) => console.log(err));
     getMovies();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [movieDetailBaseUrl]);
 
   const getMovies = async () => {
@@ -50,6 +51,7 @@ function Details() {
   };
   useEffect(() => {
     getMovies();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));

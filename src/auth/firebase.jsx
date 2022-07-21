@@ -53,6 +53,7 @@ export const login = async (email, password) => {
 export const logout = async () => {
   try {
     const { user } = await signOut(auth);
+    console.log(user);
     return true;
   } catch (error) {
     toast.error("Logouted");
@@ -82,8 +83,8 @@ export const signUpGoogle = (navigate) => {
   signInWithPopup(auth, provider)
     .then((result) => {
       console.log(result);
-      navigate('/');
-      toast.success('Logged out successfully!');
+      navigate("/");
+      toast.success("Logged out successfully!");
     })
     .catch((error) => {
       console.log(error);

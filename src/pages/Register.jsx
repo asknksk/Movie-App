@@ -45,7 +45,7 @@ export default function Register() {
     e.preventDefault();
     const displayName = `${firstName} ${lastName}`;
     const user = await register(email, password, displayName);
-    // await register(email, password, displayName);
+console.log(user)
     navigate("/login");
   };
   const handleLogin = () => {
