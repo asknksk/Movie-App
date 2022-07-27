@@ -18,5 +18,7 @@ My purpose in making this project is to use the power of React Hooks on the page
 ![]()
 
 <hr>
+
 ## Project Link
+
 <a href="https://movie-app-asknksk.vercel.app/" target="_blank">Vercel Link</a> to access my project.
