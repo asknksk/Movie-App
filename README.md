@@ -15,7 +15,7 @@ My purpose in making this project is to use the power of React Hooks on the page
 <hr>
 
 ## Project Preview
-![]()
+![](https://github.com/asknksk/Movie-App/blob/master/src/assets/Preview.gif)
 
 <hr>
 
